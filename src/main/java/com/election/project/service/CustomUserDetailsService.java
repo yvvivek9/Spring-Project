@@ -3,6 +3,7 @@ package com.election.project.service;
 import java.util.Arrays;
 import java.util.Collection;
 
+import com.election.project.entity.CustomUserDetails;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

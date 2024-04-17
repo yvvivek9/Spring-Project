@@ -1,7 +1,8 @@
-package com.election.project.service;
+package com.election.project.entity;
 
 import java.util.Collection;
 
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,7 +21,7 @@ public class CustomUserDetails implements UserDetails {
         this.fullname = fullname;
     }
 
-    public String getFullname() {
+    public String fullname () {
         return fullname;
     }
 

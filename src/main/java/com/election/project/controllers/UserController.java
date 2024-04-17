@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.election.project.entity.User;
 import com.election.project.service.UserService;
-import com.election.project.dto.UserDto;
 
 @Controller
 public class UserController {
@@ -35,26 +34,26 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login(Model model, UserDto userDto) {
+    public String login(Model model, User user) {
 
-        model.addAttribute("user", userDto);
+        model.addAttribute("user", user);
         return "login";
     }
 
     @GetMapping("/register")
-    public String register(Model model, UserDto userDto) {
-        model.addAttribute("user", userDto);
+    public String register(Model model, User user) {
+        model.addAttribute("user", user);
         return "register";
     }
 
     @PostMapping("/register")
-    public String registerSava(@ModelAttribute("user") UserDto userDto, Model model) {
-        User user = userService.findByUsername(userDto.getUsername());
-        if (user != null) {
+    public String registerSava(@ModelAttribute("user") User user, Model model) {
+        User temp = userService.findByUsername(user.getUsername());
+        if (temp != null) {
             model.addAttribute("Userexist", user);
             return "register";
         }
-        userService.save(userDto);
+        userService.save(user);
         return "redirect:/register?success";
     }
 }

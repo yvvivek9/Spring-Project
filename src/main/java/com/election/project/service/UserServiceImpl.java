@@ -5,7 +5,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.election.project.entity.User;
-import com.election.project.dto.UserDto;
 import com.election.project.repository.UserRepository;
 
 @Service
@@ -27,10 +26,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User save(UserDto userDto) {
-        User user = new User(userDto.getUsername(), passwordEncoder.encode(userDto.getPassword()),
-                userDto.getFullname());
-        return userRepository.save(user);
+    public User save(User user) {
+        User temp = new User(user.getUsername(), passwordEncoder.encode(user.getPassword()),
+                user.getFullname());
+        return userRepository.save(temp);
     }
 
 }
