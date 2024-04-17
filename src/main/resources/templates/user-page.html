@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #003366;
+            color: white;
+        }
+        .header-container {
+            background: #004d99;
+            padding: 10px;
+            color: white;
+            margin-bottom: 20px;
+        }
+        .profile-container, .announcement-container {
+            background: #1a4567;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .profile-details {
+            display: flex;
+            align-items: center;
+        }
+        .profile-details div {
+            margin-right: 30px;
+        }
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #003366;
+        }
+        .profile-pic img {
+            width: 80%;
+            border-radius: 50%;
+        }
+        .eligibility-indicator {
+            color: #28a745;
+        }
+        .announcement-container {
+            background: #22557a;
+        }
+        .btn-custom {
+            background-color: #28a745;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-container text-center">
+    <h1>Election Commission</h1>
+    <p>This website is designed for a college project and has no link with the election commission</p>
+</div>
+
+<div class="container">
+    <div class="profile-container">
+        <div class="profile-details">
+            <div class="profile-pic">
+                <img th:src="@{/img/user.png}" alt="Profile Picture">
+            </div>
+            <div>
+                <p>Voter ID: <span th:text="${user.voterId}"></span></p>
+                <p>Name: <span th:text="${user.name}"></span></p>
+                <p>Age: <span th:text="${user.age}"></span></p>
+                <p>Gender: <span th:text="${user.gender}"></span></p>
+                <p>Caste: <span th:text="${user.caste}"></span></p>
+                <p>Constituency: <span th:text="${user.constituency}"></span></p>
+                <p>State: <span th:text="${user.state}"></span></p>
+            </div>
+        </div>
+        <div>
+            <span class="eligibility-indicator" th:if="${user.eligibleToVote}">Eligible to vote</span>
+            <span class="eligibility-indicator" th:if="${user.biometricsVerified}">Biometrics verified</span>
+        </div>
+    </div>
+
+    <div class="announcement-container">
+        <h4>Announcements 📢</h4>
+        <ul>
+            <li th:each="announcement : ${announcements}" th:text="${announcement}">Announcement text here</li>
+        </ul>
+    </div>
+
+    <div class="button-container text-center">
+        <a th:href="@{/statistics}" class="btn btn-custom">Statistics</a>
+        <a th:href="@{/results}" class="btn btn-custom">Results</a>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS and optional JavaScript -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

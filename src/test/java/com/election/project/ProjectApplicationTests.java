@@ -1,10 +1,10 @@
-package com.vishnu.election;
+package com.election.project;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ElectionApplicationTests {
+class ProjectApplicationTests {
 
 	@Test
 	void contextLoads() {
