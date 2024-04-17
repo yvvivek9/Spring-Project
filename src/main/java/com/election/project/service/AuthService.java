@@ -8,27 +8,25 @@ import com.election.project.entity.User;
 import com.election.project.repository.UserRepository;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class AuthService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
 
     private UserRepository userRepository;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public AuthService(UserRepository userRepository) {
         super();
         this.userRepository = userRepository;
     }
 
-    @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
-    @Override
     public User save(User user) {
         User temp = new User(user.getUsername(), passwordEncoder.encode(user.getPassword()),
-                user.getFullname());
+                user.getFullname(), "USER");
         return userRepository.save(temp);
     }
 

@@ -16,16 +16,18 @@ public class User {
     private String username;
     private String password;
     private String fullname;
+    private String role;
 
     public User() {
 
     }
 
-    public User(String username, String password, String fullname) {
+    public User(String username, String password, String fullname, String role) {
         super();
         this.username = username;
         this.password = password;
         this.fullname = fullname;
+        this.role = role;
     }
 
     public Long getId() {
@@ -58,6 +60,14 @@ public class User {
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override

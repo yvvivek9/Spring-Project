@@ -31,11 +31,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("Username or Password not found");
         }
-        return new CustomUserDetails(user.getUsername(), user.getPassword(), authorities(), user.getFullname());
+        return new CustomUserDetails(user.getUsername(), user.getPassword(), authorities(user.getRole()), user.getFullname());
     }
 
-    public Collection<? extends GrantedAuthority> authorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("USER"));
+    public Collection<? extends GrantedAuthority> authorities(String role) {
+        return Arrays.asList(new SimpleGrantedAuthority(role));
     }
 
 }
