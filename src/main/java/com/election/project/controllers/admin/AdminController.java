@@ -1,4 +1,4 @@
-package com.election.project.controllers;
+package com.election.project.controllers.admin;
 
 import com.election.project.entity.User;
 import com.election.project.repository.UserRepository;
