@@ -10,6 +10,8 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
 
     List<Candidate> findAll();
 
+    Candidate findByName(String name);
+
     Candidate save(Candidate candidate);
 
     void deleteById(Long id);

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List Parties</title>
+    <title>List Candidates</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -14,17 +14,17 @@
         <a class="navbar-brand" href="#">Election System</a>
         <div class="navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
+                <li th:if="${isAdmin}" class="nav-item">
+                    <a class="nav-link" href="/admin/dashboard">Admin</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/dashboard">Dashboard</a>
+                    <a class="nav-link" href="/candidates">Candidates</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/candidates">Candidate</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/parties">Party</a>
+                    <a class="nav-link" href="/parties">Parties</a>
                 </li>
             </ul>
         </div>
@@ -34,10 +34,7 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-6">
-            <h2>List of Parties</h2>
-        </div>
-        <div class="col-md-6 text-right">
-            <a href="/admin/add-party" class="btn btn-primary">Add Party</a>
+            <h2>List of Candidates</h2>
         </div>
     </div>
     <table class="table mt-3">
@@ -45,21 +42,18 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
-            <th scope="col">Slogan</th>
-            <th scope="col">Actions</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Age</th>
+            <th scope="col">Party</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="party : ${parties}">
-            <td th:text="${party.id}"></td>
-            <td th:text="${party.name}"></td>
-            <td th:text="${party.slogan}"></td>
-            <td>
-                <form method="post" th:action="@{/admin/delete-party}">
-                    <input type="hidden" name="id" th:value="${party.id}">
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </td>
+        <tr th:each="candidate : ${candidates}">
+            <td th:text="${candidate.id}"></td>
+            <td th:text="${candidate.name}"></td>
+            <td th:text="${candidate.gender}"></td>
+            <td th:text="${candidate.age}"></td>
+            <td th:text="${candidate.party.name}"></td>
         </tr>
         </tbody>
     </table>

@@ -14,17 +14,17 @@
         <a class="navbar-brand" href="#">Election System</a>
         <div class="navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
+                <li th:if="${isAdmin}" class="nav-item">
+                    <a class="nav-link" href="/admin/dashboard">Admin</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/dashboard">Dashboard</a>
+                    <a class="nav-link" href="/candidates">Candidates</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/candidates">Candidate</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/parties">Party</a>
+                    <a class="nav-link" href="/parties">Parties</a>
                 </li>
             </ul>
         </div>
@@ -36,9 +36,6 @@
         <div class="col-md-6">
             <h2>List of Parties</h2>
         </div>
-        <div class="col-md-6 text-right">
-            <a href="/admin/add-party" class="btn btn-primary">Add Party</a>
-        </div>
     </div>
     <table class="table mt-3">
         <thead class="thead-dark">
@@ -46,7 +43,6 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Slogan</th>
-            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -54,12 +50,6 @@
             <td th:text="${party.id}"></td>
             <td th:text="${party.name}"></td>
             <td th:text="${party.slogan}"></td>
-            <td>
-                <form method="post" th:action="@{/admin/delete-party}">
-                    <input type="hidden" name="id" th:value="${party.id}">
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </td>
         </tr>
         </tbody>
     </table>
