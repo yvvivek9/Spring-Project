@@ -46,6 +46,7 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Slogan</th>
+            <th scope="col">Image</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -54,6 +55,9 @@
             <td th:text="${party.id}"></td>
             <td th:text="${party.name}"></td>
             <td th:text="${party.slogan}"></td>
+            <td>
+                <img th:src="@{${party.image}}" alt="Party Image" style="max-width: 100px; max-height: 100px;">
+            </td>
             <td>
                 <form method="post" th:action="@{/admin/delete-party}">
                     <input type="hidden" name="id" th:value="${party.id}">

@@ -16,5 +16,5 @@ public class Party {
     private Long id;
     private String name;
     private String slogan;
-    // implement image
+    private String image;
 }
