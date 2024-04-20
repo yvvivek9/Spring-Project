@@ -27,6 +27,11 @@ public class HomeController {
         this.voteRepository = voteRepository;
     }
 
+    @GetMapping("/")
+    public String entryRoute(Principal principal) {
+        return "redirect:/home";
+    }
+
     @GetMapping("/home")
     public String home(Model model, Principal principal) {
         User user = userRepository.findByUsername(principal.getName());
