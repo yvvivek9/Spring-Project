@@ -27,7 +27,7 @@ public class CandidateController {
     public String listCandidates(Model model) {
         List<Candidate> candidates = candidateRepository.findAll();
         model.addAttribute("candidates", candidates);
-        return "/admin/list-candidates";
+        return "admin/list-candidates";
     }
 
     @GetMapping("/admin/add-candidate")
@@ -35,7 +35,7 @@ public class CandidateController {
         model.addAttribute("candidate", candidate);
         List<Party> parties = partyRepository.findAll();
         model.addAttribute("parties", parties);
-        return "/admin/add-candidate";
+        return "admin/add-candidate";
     }
 
     @PostMapping("/admin/add-candidate")
@@ -43,7 +43,7 @@ public class CandidateController {
         Candidate temp = candidateRepository.findByName(candidate.getName());
         if (temp != null) {
             model.addAttribute("candidateExists", true);
-            return "/admin/add-candidate";
+            return "admin/add-candidate";
         }
         candidateRepository.save(candidate);
         return "redirect:/admin/candidates";

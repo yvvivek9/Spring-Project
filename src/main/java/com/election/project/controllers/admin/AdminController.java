@@ -22,7 +22,7 @@ public class AdminController {
     public String dashboard(Model model) {
         List<User> users = userRepository.findAll();
         model.addAttribute("users", users);
-        return "/admin/dashboard";
+        return "admin/dashboard";
     }
 
     @PostMapping("/admin/updateUserRole")

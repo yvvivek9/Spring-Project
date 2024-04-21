@@ -31,7 +31,7 @@ public class ElectionController {
             model.addAttribute("error", error);
         }
 
-        return "/admin/list-elections";
+        return "admin/list-elections";
     }
 
     @GetMapping("/admin/add-election")

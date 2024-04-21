@@ -33,13 +33,13 @@ public class PartyController {
     public String listParties(Model model) {
         List<Party> parties = partyRepository.findAll();
         model.addAttribute("parties", parties);
-        return "/admin/list-parties";
+        return "admin/list-parties";
     }
 
     @GetMapping("/admin/add-party")
     public String addParty(Model model, Party party) {
         model.addAttribute("party", party);
-        return "/admin/add-party";
+        return "admin/add-party";
     }
 
     @PostMapping("/admin/add-party")
@@ -47,7 +47,7 @@ public class PartyController {
         Party temp = partyRepository.findByName(party.getName());
         if (temp != null) {
             model.addAttribute("partyexists", party);
-            return "/admin/add-party";
+            return "admin/add-party";
         }
 
         String imageUrl = s3service.uploadFile(photo, party.getName());
