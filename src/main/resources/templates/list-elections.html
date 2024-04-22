@@ -56,7 +56,7 @@
             <td th:text="${election.id}"></td>
             <td th:text="${election.startDate}"></td>
             <td th:text="${election.winParty}"></td>
-            <td th:text="${election.winParty}"></td>
+            <td th:text="${election.winCandidate}"></td>
             <td>
                 <span th:if="${election.status == active}">Pending...</span>
                 <span th:if="${election.status != active}">Released!</span>

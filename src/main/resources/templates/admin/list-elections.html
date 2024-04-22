@@ -63,7 +63,7 @@
             <td th:text="${election.id}"></td>
             <td th:text="${election.startDate}"></td>
             <td th:text="${election.winParty}"></td>
-            <td th:text="${election.winParty}"></td>
+            <td th:text="${election.winCandidate}"></td>
             <td>
                 <form th:if="${election.status == active}" method="post" th:action="@{/admin/end-election}">
                     <input type="hidden" name="id" th:value="${election.id}">

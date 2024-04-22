@@ -1,5 +1,6 @@
 package com.election.project.service;
 
+import com.election.project.component.ElectionEventPublisher;
 import com.election.project.entity.Candidate;
 import com.election.project.entity.Election;
 import com.election.project.entity.Party;
@@ -22,10 +23,12 @@ public class ElectionService {
 
     private ElectionRepository electionRepository;
     private VoteRepository voteRepository;
+    private final ElectionEventPublisher electionEventPublisher;
 
-    public ElectionService(ElectionRepository electionRepository, VoteRepository voteRepository) {
+    public ElectionService(ElectionRepository electionRepository, VoteRepository voteRepository, ElectionEventPublisher electionEventPublisher) {
         this.electionRepository = electionRepository;
         this.voteRepository = voteRepository;
+        this.electionEventPublisher = electionEventPublisher;
     }
 
     public void startElection() {
@@ -33,6 +36,9 @@ public class ElectionService {
         election.setStartDate(new Date());
         election.setStatus(Election.ElectionStatus.ACTIVE);
         electionRepository.save(election);
+
+        String message = "New election has started, please reload the site";
+        electionEventPublisher.publishElectionEvent(message);
     }
 
     public void endElection(Long id) {
@@ -52,6 +58,10 @@ public class ElectionService {
 
             // Reset the votes table
             voteRepository.deleteAll();
+
+            // Publish the message
+            String message = "Election #" + id + " has ended. Winner: " + winCandidate.getName() + " from party " + winParty.getName();
+            electionEventPublisher.publishElectionEvent(message);
         }
     }
 
